@@ -1,0 +1,26 @@
+aside {
+    width: 30%;
+    padding-left: 15px;
+    margin-left: 15px;
+    float: right;
+    font-style: italic;
+    background-color: lightgray;
+  }
+  p {
+    color: red;
+  }
+
+#text {
+  border-radius: 10px;
+  height: 30px;
+  color: aqua;
+}
+
+#btn {
+  color: black;
+  border-radius: 10px;
+  background-color: aquamarine;
+  height: 30px;
+}
+
+
