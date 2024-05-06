@@ -5,7 +5,7 @@ library(glue)
 
 ui <- fluidPage(
   # inputs, id and label without parameter name and other with parameter name
-  textInput("text_input", "text input, enter your name: ", width = '800px', value = 'zzzz'),
+  textInput("text_input1", "text input, enter your name: ", width = '800px', value = 'zzzz'),
   textAreaInput("text_area_input", "text area input", resize = 'vertical'),
   passwordInput("password_input", "password input"),
   numericInput("numeric_input", "numeric input", value = 100, min = 0, max = 2000, step = 100),
@@ -29,7 +29,7 @@ ui <- fluidPage(
   ),
   fileInput("file_input", "file input"),
   actionButton("action_button", "action button",
-    icon = icon(""),
+    icon = icon("table"),
     class = "btn-warning text-info"
   ),
   actionLink("action_link", "action link",
@@ -37,14 +37,22 @@ ui <- fluidPage(
     class = "btn-danger btn-small btn-block"
   ),
   # outputs
+  p('----------------'),
+  p('----------------'),
+  p('----------------'),
 
   # Output regular text with textOutput()
-  textOutput("text_output"),
-
+  textOutput("text_output1"),
+  p('----------------'),
+  textOutput("text_output2"),
+  
   # console output with verbatimTextOutput()
   verbatimTextOutput("verbatim_output"),
+  p('----------------'),
   tableOutput("static_table"),
+  p('----------------'),
   dataTableOutput("dynamic_table"),
+  p('----------------'),
   plotOutput("plot_output", width = "400px", height = "500px"),
 )
 
@@ -53,9 +61,12 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   # pair for textOutput()
-  output$text_output <- renderText({
+  output$text_output1 <- renderText({
     # use glue for f-string
-    glue("hello {input$text_input}! (for text output)")
+    glue("hello {input$text_input1}! (for text output)")
+  })
+  output$text_output2 = renderText({
+    input$text_area_input
   })
 
   # pair for verbatimTextOutput()
@@ -68,8 +79,8 @@ server <- function(input, output, session) {
   })
 
   output$dynamic_table <- renderDataTable(
-    mtcars,
-    options = list(pageLength = 10)
+    expr = mtcars,
+    options = list(pageLength = 3)
   )
 
   output$plot_output <- renderPlot({
