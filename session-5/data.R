@@ -3,7 +3,7 @@ library(shiny)
 
 #---- 1. Uploading data from the user interface:
 ui <- fluidPage(
-  fileInput("upload", "Choose CSV File", accept = c(".csv", ".tsv")),
+  fileInput("upload", "Choose CSV File", accept = c(".csv", '.py', ".tsv")),
   
   tableOutput("head"),
 )

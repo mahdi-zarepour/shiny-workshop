@@ -24,6 +24,7 @@ ui <- dashboardPage(
       tabItem(tabName = 'data_frame',
         fluidRow(
           box(
+            
             tableOutput('data_frame')
           )
         )
